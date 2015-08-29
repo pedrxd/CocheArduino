@@ -1,34 +1,24 @@
+#include "coche/control.c"
 
 int leds =  3;
-int motora =  2;
-int motorf =  4;
+int motora =  2;  //Avance
+int motorb =  4;   // hacia atras
+int direcciona = 7; // Derecha
+int direccionb = 8;  // izquierda
 int clason =  5;
 int sensor = 6;
+
 void setup()
 {
   pinMode(leds, OUTPUT);
   pinMode(motora, OUTPUT);
-  pinMode(motorf, OUTPUT);
+  pinMode(motorb, OUTPUT);
   pinMode(clason, OUTPUT);
   pinMode(sensor, INPUT);
+  pinMode(clason, OUTPUT);
+  pinMode(direcciona, OUTPUT);
+  pinMode(direccionb, OUTPUT);
 }
-void avance()
-{
- digitalWrite(motorf, LOW);  
- digitalWrite(motora, HIGH);
-}
-void retroceso()
-{
- digitalWrite(motora, LOW);  
- digitalWrite(motorf, HIGH);
-}
-void freno()
-{
- digitalWrite(motora, LOW);  
- digitalWrite(motorf, LOW);
-}
-
-
 
 //Principal
 void loop()
