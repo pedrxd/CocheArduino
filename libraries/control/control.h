@@ -2,13 +2,10 @@
 #define control_h
 
 #include "Arduino.h"
-
-
-
 class coche
 {
   public:
-    coche(int, int, int, int);
+    void ini(int a, int b , int c, int d);
     void avance(void);
     void retroceso(void);
     void freno(void);
@@ -16,6 +13,7 @@ class coche
     void izquierda(void);
     void recto(void);
   private:
-    int leds, motora, motorb, direcciona, direccionb, clason, sensor;
+    int leds, motora, motorb, direcciona, direccionb, clason,
+sensor;
 };
 #endif

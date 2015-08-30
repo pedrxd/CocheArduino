@@ -4,7 +4,7 @@
 
 int leds, motora, motorb, direcciona, direccionb, clason, sensor; 
 
-coche::coche(int ma, int mb, int da, int db)
+void coche::ini(int ma, int mb, int da, int db)
 {
  motora = ma;
  motorb = mb;

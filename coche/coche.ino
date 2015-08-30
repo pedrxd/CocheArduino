@@ -8,8 +8,7 @@ int leds =  3,
  direccionb = 8,  // izquierda
  clason =  5,
  sensor = 6; 
-
- coche ch = coche(motora, motorb, direcciona, direccionb);
+ coche ch;
 void setup()
 {
   pinMode(leds, OUTPUT);
@@ -20,8 +19,7 @@ void setup()
   pinMode(clason, OUTPUT);
   pinMode(direcciona, OUTPUT);
   pinMode(direccionb, OUTPUT);
-  
-  
+  ch.avance();
 }
 
 //Principal
