@@ -13,6 +13,7 @@ public:
   void derecha(void);
   void izquierda(void);
   void recto(void);
+  void parar(void);
 private:
   int leds, motora, motorb, direcciona, direccionb, sensor;
 };
@@ -60,4 +61,10 @@ void Coche::recto(void)
  digitalWrite(direcciona, LOW);
  digitalWrite(direccionb, LOW); 
 }
-
+void Coche::parar(void)
+{
+ digitalWrite(direcciona, LOW);
+ digitalWrite(direccionb, LOW);
+ digitalWrite(motora, LOW);
+ digitalWrite(motorb, LOW);
+}
