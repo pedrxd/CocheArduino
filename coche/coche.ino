@@ -27,6 +27,7 @@ void setup()
 //Principal
 void loop()
 {
+ led.update();
  if(Serial.available() > 0){
    prevcomando = comando;
    comando = Serial.read();
