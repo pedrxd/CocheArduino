@@ -2,12 +2,12 @@
 #include "/home/pedro/Proyectos/coche/libraries/led.h"
 
 
-int leds = 13, 
+int leds = 13,  //led 
  motora =  2,  //Avance
  motorb =  4,   // hacia atras
  direcciona = 7, // Derecha
  direccionb = 8,  // izquierda
- sensor = 6,
+ sensor = 6,     //Ultra sonidos
  timelapse;
 char comando = 'S', prevcomando = 'A'; 
  Coche coche = Coche(motora,motorb,direcciona,direccionb);
@@ -67,6 +67,28 @@ void loop()
       case 'J':
        coche.derecha();
        coche.retroceso();
+       break;
+      case 'W':
+       led.start(1);
+       break;
+      case 'w':
+       led.stop();
+       break;
+      case 'X':
+       led.start(2);
+       break;
+      case 'x':
+       led.stop();
+       break;
+      case '1': case '2': case '3': case '4': case '5':
+      case '6': case '7': case '8': case '9':
+       led.updatetime((comando-48)*100);
+       break;
+      case 'q':
+       led.updatetime(1000);
+       break;
+      default:
+       coche.parar();
        break;
      }
    timelapse = millis();

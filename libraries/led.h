@@ -8,18 +8,19 @@ class Led
 public:
   Led(int pin);
   void update(void);
-  void mode(void);
   void start(int);
   void stop(void);
+  void updatetime(int);
 };
 #endif
-int pinled, modet;
+int pinled, modet, delaytick;
 unsigned long latesttick;
 boolean status = false;
 
 void encender(void);
 void apagar(void);
 void parpadear(void);
+
 
 Led::Led(int pin)
 {
@@ -46,8 +47,11 @@ void Led::stop(void)
  modet = 0;
  apagar();
 }
+void Led::updatetime(int i){
+ delaytick = i;
+}
 void parpadear(void){
- if(latesttick == 0 || latesttick+300 < millis()){
+ if(latesttick == 0 || (latesttick+(unsigned long)delaytick) < millis()){
   latesttick = millis();
   status ? apagar() : encender(); 
  }
@@ -62,3 +66,4 @@ void apagar(void)
  digitalWrite(pinled, LOW);
  status = false;
 }
+
