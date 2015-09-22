@@ -11,17 +11,15 @@ public:
   void start(int);
   void stop(void);
   void updatetime(int);
+  void encender(void);
+  void apagar(void);
+  void parpadear(void);
 private:
   int pinled, modet, delaytick;
   boolean status = false;
   unsigned long latesttick;
 };
 #endif
-
-void encender(void);
-void apagar(void);
-void parpadear(void);
-
 
 Led::Led(int pin)
 {
@@ -51,18 +49,18 @@ void Led::stop(void)
 void Led::updatetime(int i){
  delaytick = i;
 }
-void parpadear(void){
+void Led::parpadear(void){
  if(latesttick == 0 || (latesttick+(unsigned long)delaytick) < millis()){
   latesttick = millis();
   status ? apagar() : encender(); 
  }
 }
-void encender(void)
+void Led::encender(void)
 {
  digitalWrite(pinled, HIGH);
  status = true;
 }
-void apagar(void)
+void Led::apagar(void)
 {
  digitalWrite(pinled, LOW);
  status = false;
