@@ -24,6 +24,7 @@ private:
 Led::Led(int pin)
 {
  pinled = pin;
+ pinMode(pin, OUTPUT);
 }
 
 void Led::update(void)
