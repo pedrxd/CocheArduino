@@ -11,11 +11,12 @@ public:
   void start(int);
   void stop(void);
   void updatetime(int);
+private:
+  int pinled, modet, delaytick;
+  boolean status = false;
+  unsigned long latesttick;
 };
 #endif
-int pinled, modet, delaytick;
-unsigned long latesttick;
-boolean status = false;
 
 void encender(void);
 void apagar(void);
