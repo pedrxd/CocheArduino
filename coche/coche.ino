@@ -1,22 +1,26 @@
 #include "/home/pedro/Proyectos/coche/libraries/control.h"
 #include "/home/pedro/Proyectos/coche/libraries/led.h"
 
-
-int leds = 13,  //led 
+//Declarating all the variables where the car it is.
+int leda = 13,  //led de alante.
+ ledd = 12, //led de atras
  motora =  2,  //Avance
  motorb =  4,   // hacia atras
  direcciona = 7, // Derecha
  direccionb = 8,  // izquierda
  sensor = 6,     //Ultra sonidos
  timelapse;
+ 
 char comando = 'S', prevcomando = 'A'; 
+
+ //Configuratin the car and the led.
  Coche coche = Coche(motora,motorb,direcciona,direccionb);
- Led led = Led(leds);
+ Led ledelante = Led(leda);
+ Led ledatras = Led(ledd);
  
 void setup()
 {
   Serial.begin(9600);
-  pinMode(leds, OUTPUT);
   pinMode(motora, OUTPUT);
   pinMode(motorb, OUTPUT);
   pinMode(sensor, INPUT);
@@ -27,7 +31,8 @@ void setup()
 //Principal
 void loop()
 {
- led.update();
+ ledatras.update();
+ ledelante.update();
  if(Serial.available() > 0){
    prevcomando = comando;
    comando = Serial.read();
@@ -69,23 +74,33 @@ void loop()
        coche.retroceso();
        break;
       case 'W':
-       led.start(1);
+       ledelante.start(1);
        break;
       case 'w':
-       led.stop();
+       ledelante.stop();
+       break;
+      case 'U':
+       ledatras.start(1);
+       break;
+      case 'u':
+       ledatras.stop();
        break;
       case 'X':
-       led.start(2);
+       ledelante.start(2);
+       ledatras.start(2);
        break;
       case 'x':
-       led.stop();
+       ledelante.stop();
+       ledatras.stop();
        break;
       case '1': case '2': case '3': case '4': case '5':
       case '6': case '7': case '8': case '9':
-       led.updatetime((comando-48)*100);
+       ledatras.updatetime((comando-48)*100);
+       ledelante.updatetime((comando-48)*100);
        break;
       case 'q':
-       led.updatetime(1000);
+       ledatras.updatetime(1000);
+       ledelante.updatetime(1000);
        break;
       default:
        coche.parar();
