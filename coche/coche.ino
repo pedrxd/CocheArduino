@@ -1,25 +1,26 @@
-#include "/home/pedro/Proyectos/coche/libraries/control.h"
-#include "/home/pedro/Proyectos/coche/libraries/led.h"
+#include "libraries/control.h"
+#include "libraries/led.h"
 
-//Declarating all the variables where the car it is.
+
 int leda = 13,  //led de alante.
  ledd = 12, //led de atras
  motora =  2,  //Avance
  motorb =  4,   // hacia atras
  direcciona = 7, // Derecha
  direccionb = 8,  // izquierda
- sensor = 6,     //Ultra sonidos
+//sensor = 6,     //Ultra sonidos
  timelapse;
  
 char comando = 'S', prevcomando = 'A'; 
 
- //Configuratin the car and the led.
+ //Configuracion del coche
  Coche coche = Coche(motora,motorb,direcciona,direccionb);
  Led ledelante = Led(leda);
  Led ledatras = Led(ledd);
  
 void setup()
 {
+  //Asignar el modo del pin
   Serial.begin(9600);
   pinMode(motora, OUTPUT);
   pinMode(motorb, OUTPUT);
@@ -31,12 +32,16 @@ void setup()
 //Principal
 void loop()
 {
+ //Actualizar el estado de las led
  ledatras.update();
  ledelante.update();
+
+ //Comprobar si ha llegado un comando
  if(Serial.available() > 0){
    prevcomando = comando;
    comando = Serial.read();
    if(comando != prevcomando)
+     //Ejectuar accion segun el comando
      switch(comando){
       case 'S': 
        coche.parar();
@@ -109,6 +114,7 @@ void loop()
    timelapse = millis();
  }else{
   if(timelapse+500 > millis()){
+   //Si no se recibe un comando desde hace 0,5 segundos, el coche se para.
    coche.parar(); 
   }
  }

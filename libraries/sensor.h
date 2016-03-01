@@ -1,3 +1,4 @@
+/*
 #ifndef sensor_h
 #define sensor_h
 
@@ -37,3 +38,4 @@ int Sensor::getLastDis(void)
 {
   return lastdis;
 }
+*/
